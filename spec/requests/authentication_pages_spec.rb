@@ -86,6 +86,15 @@ describe "Authentication" do
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
           end
+
+          describe "when signing in again" do
+            before do
+              delete signout_path
+              sign_in(user)
+            end
+
+            it { should have_selector('title', text: user.name) }
+          end
         end
       end
     end
