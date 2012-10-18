@@ -140,4 +140,14 @@ describe "UserPages" do
 			specify { user.reload.email.should 	== new_email }
 		end
 	end
+
+	describe "destroy" do
+		let(:user) { FactoryGirl.create(:admin) }
+		before do
+			sign_in(admin)
+		end
+
+		expect { delete user_path(admin) }.not_to change(User, :count).by(1)
+
+	end
 end
