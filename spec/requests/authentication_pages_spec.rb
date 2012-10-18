@@ -35,6 +35,11 @@ describe "Authentication" do
 
   		it { should_not have_link('Sign in', href: signin_path) }
 
+      describe "then access user#new" do
+        before{ visit new_user_path }
+        it { should have_selector('h1', text: 'Welcome') }
+      end
+
       describe "followed by signout" do
         before { click_link "Sign out" }
         it { should have_link('Sign in', href: signin_path) }
