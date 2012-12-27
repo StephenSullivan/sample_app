@@ -37,7 +37,7 @@ describe "Authentication" do
 
       describe "then access user#new" do
         before{ visit new_user_path }
-        it { should have_selector('h1', text: 'Welcome') }
+        it { should have_selector('h1', text: user.name) }
       end
 
       describe "followed by signout" do
