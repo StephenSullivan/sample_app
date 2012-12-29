@@ -31,6 +31,19 @@ describe "Static pages" do
           page.should have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      describe "micropost count" do
+        it "should pluralize more or less than one micropost" do
+          page.should have_selector 'span', text: 'microposts'
+          2.times { click_link 'delete' }
+          page.should have_selector 'span', text: 'microposts'
+        end
+
+        it "should not pluralize one micropost" do
+          click_link 'delete'
+          page.should have_selector 'span', text: 'micropost'
+        end
+      end
     end
   end  
 
